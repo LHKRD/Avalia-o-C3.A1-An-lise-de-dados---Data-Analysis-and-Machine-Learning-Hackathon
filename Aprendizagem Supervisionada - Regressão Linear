@@ -1,0 +1,27 @@
+
+X = df.drop('SalePrice', axis=1)
+y = df['SalePrice']
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+modelo = LinearRegression()
+modelo.fit(X_train, y_train)
+
+pred = modelo.predict(X_test)
+
+r2 = r2_score(y_test,pred)
+mae = mean_absolute_error(y_test,pred)
+rmse = np.sqrt(mean_squared_error(y_test,pred))
+
+print('R²:', r2)
+print('MAE:', mae)
+print('RMSE:', rmse)
+
+***
+RESULTADOS OBTIDOS:
+R²: 0.855621196926319
+MAE: 20294.021349760496
+RMSE: 33278.10867489865
+***
