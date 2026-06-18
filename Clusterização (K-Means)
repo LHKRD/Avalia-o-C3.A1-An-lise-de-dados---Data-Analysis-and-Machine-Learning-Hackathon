@@ -1,0 +1,20 @@
+dados = df[['GrLivArea','SalePrice']]
+
+kmeans = KMeans(
+    n_clusters=3,
+    random_state=42,
+    n_init=10
+)
+
+clusters = kmeans.fit_predict(dados)
+
+plt.figure(figsize=(8,5))
+plt.scatter(
+    dados['GrLivArea'],
+    dados['SalePrice'],
+    c=clusters
+)
+plt.xlabel('Área Habitável')
+plt.ylabel('Preço')
+plt.title('Clusterização')
+plt.show()
