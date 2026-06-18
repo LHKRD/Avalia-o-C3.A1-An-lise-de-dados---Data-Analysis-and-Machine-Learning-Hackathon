@@ -1,0 +1,8 @@
+
+lof_data = df[['GrLivArea','SalePrice']]
+
+lof = LocalOutlierFactor()
+
+outlier = lof.fit_predict(lof_data)
+
+print(pd.Series(outlier).value_counts())
