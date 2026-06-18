@@ -1,0 +1,31 @@
+from mlxtend.frequent_patterns import apriori, association_rules
+
+assoc = train[['OverallQual','GarageCars']].copy()
+
+assoc['AltaQualidade'] = assoc['OverallQual'] >= 7
+assoc['GaragemGrande'] = assoc['GarageCars'] >= 2
+
+basket = assoc[['AltaQualidade','GaragemGrande']]
+
+freq = apriori(
+    basket.astype(bool),
+    min_support=0.1,
+    use_colnames=True
+)
+
+rules = association_rules(
+    freq,
+    metric='confidence',
+    min_threshold=0.5
+)
+
+rules[['antecedents','consequents','support','confidence','lift']]
+
+***
+
+RESULTADOS OBTIDOS:
+    antecedents    consequents    support    confidence    lift
+0    (AltaQualidade)    (GaragemGrande)    0.359589    0.958029    1.384874
+1    (GaragemGrande)    (AltaQualidade)    0.359589    0.519802    1.384874
+
+***
