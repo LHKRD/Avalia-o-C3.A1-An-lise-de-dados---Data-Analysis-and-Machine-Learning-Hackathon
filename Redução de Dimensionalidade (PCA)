@@ -1,0 +1,16 @@
+X = df.drop('SalePrice', axis=1)
+
+scaler = StandardScaler()
+
+X_scaled = scaler.fit_transform(X)
+
+pca = PCA(n_components=2)
+
+resultado = pca.fit_transform(X_scaled)
+
+plt.figure(figsize=(8,5))
+plt.scatter(resultado[:,0], resultado[:,1])
+plt.title('PCA')
+plt.show()
+
+print('Variância Explicada:', pca.explained_varianceratio.sum())
