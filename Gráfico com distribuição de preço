@@ -1,0 +1,5 @@
+
+plt.figure(figsize=(8,5))
+sns.histplot(train['SalePrice'], kde=True)
+plt.title('Distribuição dos Preços')
+plt.show()
