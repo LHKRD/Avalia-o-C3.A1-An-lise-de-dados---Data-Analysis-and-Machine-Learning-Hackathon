@@ -1,0 +1,22 @@
+df = train.copy()
+
+for col in df.columns:
+    if df[col].dtype == 'object':
+        df[col] = df[col].fillna('Missing')
+    else:
+        df[col] = df[col].fillna(df[col].median())
+
+df['TotalArea'] = (
+    df['TotalBsmtSF'] +
+    df['1stFlrSF'] +
+    df['2ndFlrSF']
+)
+
+df = pd.get_dummies(df, drop_first=True)
+
+print(df.shape)
+
+***
+RESULTADO OBTIDO:
+(1460, 263)
+***
